@@ -3,13 +3,13 @@ import { addAction, deleteAction, filterAction } from './ItemsActions';
 import { itemsInitialState } from './items-init-state';
 
 const itemsReducer = createReducer(itemsInitialState.add, {
-  [addAction]: (state, action) => [...state, action.payload],
-  [deleteAction]: (state, action) =>
+  [addAction.toString()]: (state, action) => [...state, action.payload],
+  [deleteAction.toString()]: (state, action) =>
     state.filter(item => item.id !== action.payload),
 });
 
 const filterReducer = createReducer(itemsInitialState.filter, {
-  [filterAction]: (_, action) => action.payload,
+  [filterAction.toString()]: (_, action) => action.payload,
 });
 
 export const mainReducer = combineReducers({

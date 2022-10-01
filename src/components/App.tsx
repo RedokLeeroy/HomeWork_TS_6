@@ -18,7 +18,7 @@ export const App = ():JSX.Element => {
     dispatch(filterAction(value));
   };
 
-  const handleFilters = ():{} => {
+  const handleFilters = (): {name:string, id:string, phone:string}[] => {
     return contacts.filter((contact: { name: string; }) =>
       contact.name.toLowerCase().includes(filteritem.toLowerCase())
     );

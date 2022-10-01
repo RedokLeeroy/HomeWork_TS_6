@@ -1,7 +1,7 @@
-import { ActionCreator, createAction } from '@reduxjs/toolkit';
+import { createAction } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
-export const addAction = createAction('add', (name:string, phone:string) => ({
+export const addAction = createAction('add',(name:string, phone:string) => ({
   payload: {
     name,
     phone,

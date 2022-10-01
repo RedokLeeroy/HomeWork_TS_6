@@ -1,23 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FormSubmit } from './FormSubmit';
 import { NameInput } from './NameInput';
 import { PhoneInput } from './PhoneInput';
-import { useDispatch, useSelector } from 'react-redux';
-import { addAction } from 'redux/ItemsActions';
-import { addItemSelector } from 'redux/items-selector';
+import { addAction } from '../../redux/ItemsActions';
+import { addItemSelector } from '../../redux/items-selector';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 //---------------------------------------------------------------------------------//
 
 export const PhonebookForm = () => {
   const [nameEl, setNameEl] = useState('');
   const [phone, setPhone] = useState('');
-  const dispatch = useDispatch();
-  const contacts = useSelector(addItemSelector);
-  console.log(contacts);
+  const dispatch = useAppDispatch();
+  const contacts = useAppSelector(addItemSelector);
 
-  const handSubmit = event => {
+  const handSubmit = (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const isHere = contacts.some(({ name }) => nameEl === name);
+    const isHere = contacts.some(({ name }: {name:string}) => nameEl === name);
     if (isHere) {
       alert(`Name already in contacts`);
       return;
@@ -28,7 +27,7 @@ export const PhonebookForm = () => {
     }
   };
 
-  const handlerInput = event => {
+  const handlerInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === 'name') {
       setNameEl(value);
