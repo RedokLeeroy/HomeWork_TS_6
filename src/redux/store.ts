@@ -9,11 +9,12 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
+  WebStorage,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 //-----------------------------------------------------------------------------------//
-const persistConfig = {
+const persistConfig:{key: string, storage: WebStorage, whitelist: string[]} = {
   key: 'root',
   storage,
   whitelist: ['items'],
@@ -21,7 +22,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, mainReducer);
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {persistedReducer},
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
