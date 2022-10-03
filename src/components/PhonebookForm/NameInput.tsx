@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+
 import React from "react"
 import s from "./Input.module.css"
 export const NameInput = ({name, value, func}:{name:string, value:string, func:React.ChangeEventHandler<HTMLInputElement>}) => {
