@@ -22,7 +22,7 @@ const persistConfig:{key: string, storage: WebStorage, whitelist: string[]} = {
 const persistedReducer = persistReducer(persistConfig, mainReducer);
 
 const store = configureStore({
-  reducer: {persistedReducer},
+  reducer: persistedReducer,
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -33,3 +33,7 @@ const store = configureStore({
 });
 let persistor = persistStore(store);
 export { store, persistor };
+
+export type RootState = ReturnType<typeof store.getState> //що таке рутстейт
+
+export type AppDispatch = typeof store.dispatch
